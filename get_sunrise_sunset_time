@@ -1,0 +1,59 @@
+int getDayOfTheYear(int m, int d)
+{
+  int daysTotal = 0;
+  for(int i = 1; i < m; i++){
+    switch(i) {
+      case 1 : 
+      case 3 :
+      case 5 :
+      case 7 :
+      case 8 :
+      case 10 :
+      case 12 : daysTotal += 31;
+                break;
+
+      case 4:
+      case 6:
+      case 9:
+      case 11: daysTotal += 30;
+                break;
+
+      case 2: daysTotal += 29;
+                break;
+      default: ;
+    }
+  }
+  daysTotal += d;
+  return daysTotal;
+    
+
+}
+
+
+
+int getSunrsetTime(int mo, int da){
+    int x = getDayOfTheYear(mo, da);
+    double a0 = 1.829932867489824;
+    double a1 = -129.26961401052262;
+    double a2 = 2.666297060591491;
+    double a3 = -3.989111864680195;
+    double b1 = 32.261389594408485;
+    double b2 = 8.96949779113731;
+    double b3 = 2.88813311281088;
+    double c =  1106.96414676;
+    double d = 0.01712;
+    return (c + a1 * cos(x * d) + b1 * sin(x * d) + a2 * cos(x * d * 2) + b2 * sin(x * d * 2) + a3 * cos(x * d * 3) + b3 * sin(x * d * 3));
+}
+
+int getSunriseTime(int mo, int da){
+    int x = getDayOfTheYear(mo, da);
+    double a1 = 128.59513530157145;
+    double a2 = 4.614311497898456;
+    double a3 = 3.741632532320843;
+    double b1 = -20.086307359622392;
+    double b2 = 9.29087888908473;
+    double b3 = -2.65331738027494;
+    double c =  370.567971898;
+    double d = 0.0170068027211;
+    return (c + a1 * cos(x * d) + b1 * sin(x * d) + a2 * cos(x * d * 2) + b2 * sin(x * d * 2) + a3 * cos(x * d * 3) + b3 * sin(x * d * 3));
+}
